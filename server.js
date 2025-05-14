@@ -108,8 +108,8 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);  // Logs local URL
-    console.log(`Server running at http://127.0.0.1:${PORT}`); // Logs Render accessible URL
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running at http://localhost:${PORT}`);  // This will show the local server address
+    console.log(`Server running at http://0.0.0.0:${PORT}`);  // This should show external address on Render
   });
   
