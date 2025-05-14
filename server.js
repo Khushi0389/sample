@@ -109,6 +109,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
+const PORT = process.env.PORT || 3000;  // Use environment variable or default to 3000
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running at http://localhost:${PORT}`);
   console.log(`Server running at http://0.0.0.0:${PORT}`);  // Bind to all interfaces
