@@ -109,6 +109,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+  });
+  
