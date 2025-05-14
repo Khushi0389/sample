@@ -233,29 +233,54 @@ audio {
 
 /* Boy Icons */
 .boy-icons {
-  position: absolute;
- bottom: 60%;
-  width: 100%;
   display: flex;
-  justify-content: space-between;
-  z-index: 1;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 10px;
 }
 
 .boy-icon {
-  width: 240px;
-  height: 240px;
+  flex: 0 0 auto;
+  width: 160px;
+  height: 160px;
 }
 
 .boy-icon img {
-  width: 240px;
-  height: 240px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  clip-path: polygon(-41% 0, 50% 91%, 141% 0);
+  clip-path: polygon(-41% 0, 50% 91%, 141% 0); /* Heart shape */
   mask: 
     radial-gradient(at 70% 31%, #000 29%, #0000 30%),
     radial-gradient(at 30% 31%, #000 29%, #0000 30%),
     linear-gradient(#000 0 0) bottom / 100% 50% no-repeat;
 }
+
+/* Responsive scaling */
+@media (max-width: 768px) {
+  .boy-icon {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .boy-icon {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 360px) {
+  .boy-icon {
+    width: 80px;
+    height: 80px;
+  }
+}
+
 
 .boy-icon.left {
   position: absolute;
