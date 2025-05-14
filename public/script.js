@@ -60,6 +60,7 @@ function revealCard(card) {
   }
 }
 
+
 // 3. Star Memory Feature
 const memories = [
   "You make my world feel so safe 💖",
