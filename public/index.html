@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Love Portal 💖</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <!-- Floating Balls -->
+ <div class="ball-animation">
+  <div class="ball" style="left: 10%; animation-delay: 0s;"></div>
+  <div class="ball" style="left: 30%; animation-delay: 1s;"></div>
+  <div class="ball" style="left: 50%; animation-delay: 2s;"></div>
+  <div class="ball" style="left: 70%; animation-delay: 3s;"></div>
+  <div class="ball" style="left: 90%; animation-delay: 4s;"></div>
+</div>
+
+  <!-- Welcome Screen -->
+  <div class="portal-screen" id="portalScreen">
+    <!-- Boy Icons -->
+ <div class="boy-icons">
+  <div class="boy-icon left">
+    <img src="us1.jpeg" alt="Boy Icon" />
+  </div>
+  <div class="boy-icon right">
+    <img src="us2.jpeg" alt="Boy Icon" />
+  </div>
+</div>
+    <h1 class="title">Hiiieeee, Babyyygoiirlll💕</h1>
+    <button onclick="enterPortal()">Peek Inside💌</button>
+  </div>
+
+  <!-- Game Section -->
+  <div class="game-section" id="gameSection" style="display: none;">
+    <h2>Match the Hearts 💖</h2>
+    <div class="grid" id="grid"></div>
+    <div id="gameMessage"></div>
+    <!-- Back Button -->
+    <button onclick="goBack('portalScreen')">Back</button>
+    <!-- Next Button to skip to Star Memory -->
+    <button onclick="goToStarMemory()">Next</button>
+  </div>
+
+  <!-- Star Memory Section -->
+  <div class="star-section" id="starSection" style="display: none;">
+    <h2>🌟 Click a Star for a Gentle Reminder 🌟</h2>
+    <div class="sky" id="sky"></div>
+    <p id="memoryText"></p>
+    <!-- Back Button -->
+    <button onclick="goBack('gameSection')">Back</button>
+    <!-- Next Button to skip to Image Upload -->
+    <button onclick="goToUpload()">Next</button>
+  </div>
+
+  <!-- Image/Video Upload Section -->
+  <div class="upload-section" id="uploadSection" style="display: none;">
+    <h2>Upload Your Special Moment 💞</h2>
+    <form id="uploadForm" enctype="multipart/form-data">
+      <input type="file" id="mediaInput" accept="image/*,video/*" />
+      <button type="submit">Upload</button>
+    </form>
+    <div id="mediaDisplay"></div>
+    <button onclick="goBack('starSection')">Back</button>
+    <button onclick="goToGallery()">Next</button>
+  </div>
+
+  <!-- Image Gallery Section -->
+  <div class="gallery-section" id="gallerySection" style="display: none;">
+    <h2>Our Gallery 🖼️</h2>
+    <div id="gallery"></div>
+    <!-- Back Button -->
+    <button onclick="goBack('uploadSection')">Back</button>
+  </div>
+  
+
+  <!-- Play/Pause Music Button -->
+  <button id="musicBtn" onclick="toggleMusic()" class="music-btn">🎶</button>
+
+  <!-- Background Music -->
+  <audio id="bgMusic">
+    <source src="music/Blue.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html> 
+ 
