@@ -108,8 +108,8 @@ app.use((err, req, res, next) => {
   }
 });
 
-// Start the server
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`Server running at http://localhost:${PORT}`);  // Logs local URL
+    console.log(`Server running at http://127.0.0.1:${PORT}`); // Logs Render accessible URL
   });
   
