@@ -132,7 +132,7 @@ function goToUpload() {
 // 6. Upload Media Handler (images and videos)
 document.getElementById('uploadForm').addEventListener('submit', function (e) {
   e.preventDefault();
-
+  const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://sample-6kgt.onrender.com';
   const formData = new FormData();
   const fileInput = document.getElementById('mediaInput');
 
@@ -149,9 +149,9 @@ document.getElementById('uploadForm').addEventListener('submit', function (e) {
           document.getElementById('mediaDisplay').innerHTML = `
             <h3>Uploaded Media:</h3>
             ${data.mediaType === 'video' 
-              ? `<video width="300" controls><source src="http://localhost:3000${data.mediaUrl}" type="video/mp4"></video>`
-              : `<img src="http://localhost:3000${data.mediaUrl}" alt="Uploaded Image" style="max-width: 300px;" />`}
-          `;
+    ? `<video width="300" controls><source src="${baseUrl}${data.mediaUrl}" type="video/mp4"></video>`
+    : `<img src="${baseUrl}${data.mediaUrl}" alt="Uploaded Image" style="max-width: 300px;" />`}
+`;
           setTimeout(() => {
             document.getElementById('uploadSection').style.display = 'none';
             currentSection = 'gallerySection';
