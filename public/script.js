@@ -104,7 +104,7 @@ function showStars() {
     const star = document.createElement('div');
     star.classList.add('star');
     star.style.left = `${Math.random() * 95}%`;
-    star.style.top = `${Math.random() * 85 + 5}px`;
+    star.style.top = `${Math.random() * 90}%`;
     star.dataset.memory = memory;
     star.addEventListener('click', () => {
       document.getElementById('memoryText').textContent = star.dataset.memory;
