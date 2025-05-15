@@ -103,8 +103,8 @@ function showStars() {
   memories.forEach((memory) => {
     const star = document.createElement('div');
     star.classList.add('star');
-    star.style.left = `${Math.random() * 90 + 5}%`;
-    star.style.top = `${Math.random() * 80 + 10}px`;
+    star.style.left = `${Math.random() * 95}%`;
+    star.style.top = `${Math.random() * 85 + 5}px`;
     star.dataset.memory = memory;
     star.addEventListener('click', () => {
       document.getElementById('memoryText').textContent = star.dataset.memory;
