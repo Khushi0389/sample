@@ -322,9 +322,8 @@ function openFullScreen(src, type) {
 
   fullScreenOverlay.appendChild(mediaElement);
   const deleteBtn = document.createElement('button');
-  deleteBtn.textContent = '🗑️ Delete';
+  deleteBtn.textContent = '🗑️';
   deleteBtn.style.marginTop = '10px';
-  deleteBtn.style.padding = '8px 12px';
   deleteBtn.style.fontSize = '16px';
   deleteBtn.style.cursor = 'pointer';
   deleteBtn.style.border = 'none';
