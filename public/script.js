@@ -72,7 +72,7 @@ const memories = [
   "You're my favorite person, every single day 💌",
   "I loveeee youuuu Babbbyyyygooiirrllll 💞",
   "Hieeee Princessssss 💌 🎀",
-"My heart goes ‘weeeee’ when I think of you 😍🎀",
+  "My heart goes ‘weeeee’ when I think of you 😍🎀",
   "You’re literally the cutest human ever 🥺💕",
   "Every message from you makes me smile 😊💖",
   "Chap chappp chappp chappp 💋💋💋💋💋💋💋💋",
@@ -94,7 +94,6 @@ const memories = [
   "I still get butterflies when I talk to you 🦋💌",
   "Sending you a million kisses right now 💋💋🧸💘"
 ];
-
 
 function showStars() {
   const sky = document.getElementById('sky');
@@ -129,7 +128,7 @@ function goToUpload() {
   document.getElementById(currentSection).style.display = 'block';
 }
 
-// 6. Upload Media Handler (images and videos)
+// 6. Upload Media Handler
 document.getElementById('uploadForm').addEventListener('submit', function (e) {
   e.preventDefault();
   const baseUrl = `${window.location.origin}`;
@@ -148,10 +147,10 @@ document.getElementById('uploadForm').addEventListener('submit', function (e) {
         if (data.mediaUrl) {
           document.getElementById('mediaDisplay').innerHTML = `
             <h3>Uploaded Media:</h3>
-            ${data.mediaType === 'video' 
-    ? `<video width="300" controls><source src="${baseUrl}${data.mediaUrl}" type="video/mp4"></video>`
-    : `<img src="${baseUrl}${data.mediaUrl}" alt="Uploaded Image" style="max-width: 300px;" />`}
-`;
+            ${data.mediaType === 'video'
+              ? `<video width="300" controls><source src="${baseUrl}${data.mediaUrl}" type="video/mp4"></video>`
+              : `<img src="${baseUrl}${data.mediaUrl}" alt="Uploaded Image" style="max-width: 300px;" />`
+            }`;
           setTimeout(() => {
             document.getElementById('uploadSection').style.display = 'none';
             currentSection = 'gallerySection';
@@ -170,7 +169,7 @@ document.getElementById('uploadForm').addEventListener('submit', function (e) {
   }
 });
 
-// 7. Load Gallery (images and videos)
+// 7. Load Gallery
 function loadGallery() {
   document.getElementById('gallerySection').style.display = 'block';
   const gallery = document.getElementById('gallery');
@@ -229,7 +228,7 @@ function loadGallery() {
     });
 }
 
-// 8. Delete Media (image or video)
+// ✅ 8. Fixed Delete Media
 function deleteMedia(url, mediaWrapper) {
   fetch(`https://sample-6kgt.onrender.com/delete?mediaUrl=${encodeURIComponent(url)}`, {
     method: 'DELETE'
@@ -237,7 +236,7 @@ function deleteMedia(url, mediaWrapper) {
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-        mediaWrapper.remove();
+        if (mediaWrapper) mediaWrapper.remove();
         alert('Media deleted successfully!');
       } else {
         alert('Failed to delete media.');
@@ -245,7 +244,8 @@ function deleteMedia(url, mediaWrapper) {
     })
     .catch(err => {
       console.error('Error deleting media:', err);
-      alert('Error deleting media.');
+      alert('An error occurred, but the media might have been deleted. Reloading gallery...');
+      loadGallery();
     });
 }
 
@@ -292,7 +292,7 @@ function goBack() {
   document.getElementById(currentSection).style.display = 'block';
 }
 
-// 12. Fullscreen Media View (image and video)
+// ✅ 12. Updated Fullscreen Media View
 function openFullScreen(src, type) {
   const fullScreenOverlay = document.createElement('div');
   fullScreenOverlay.style.position = 'fixed';
@@ -321,31 +321,27 @@ function openFullScreen(src, type) {
   }
 
   fullScreenOverlay.appendChild(mediaElement);
+
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = '🗑️';
-  deleteBtn.style.marginTop = '10px';
-  deleteBtn.style.fontSize = '16px';
-  deleteBtn.style.cursor = 'pointer';
-  deleteBtn.style.border = 'none';
-  deleteBtn.style.backgroundColor = '#ff4d6d';
-  deleteBtn.style.color = '#fff';
   deleteBtn.style.position = 'absolute';
   deleteBtn.style.right = '8px';
   deleteBtn.style.bottom = '8px';
+  deleteBtn.style.backgroundColor = '#ff4d6d';
+  deleteBtn.style.color = '#fff';
+  deleteBtn.style.border = 'none';
+  deleteBtn.style.fontSize = '16px';
+  deleteBtn.style.cursor = 'pointer';
 
   deleteBtn.onclick = function (e) {
-    e.stopPropagation(); 
-
+    e.stopPropagation();
     const confirmDelete = confirm('Are you sure you want to delete this media?');
     if (confirmDelete) {
       document.body.removeChild(fullScreenOverlay);
       const baseUrl = 'https://sample-6kgt.onrender.com';
       const mediaUrl = src.startsWith(baseUrl) ? src.slice(baseUrl.length) : src;
-
-      deleteMedia(mediaUrl, null);
-
-      // Reload gallery after deletion
-      loadGallery();
+      deleteMedia(mediaUrl); // No mediaWrapper passed
+      loadGallery(); // Refresh
     }
   };
 
@@ -357,4 +353,3 @@ function openFullScreen(src, type) {
 
   document.body.appendChild(fullScreenOverlay);
 }
-
