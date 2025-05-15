@@ -220,27 +220,6 @@ function loadGallery() {
           mediaWrapper.appendChild(img);
         }
 
-        const deleteBtn = document.createElement('button');
-        deleteBtn.textContent = 'Delete';
-        deleteBtn.style.position = 'absolute';
-        deleteBtn.style.bottom = '5px';
-        deleteBtn.style.left = '50%';
-        deleteBtn.style.transform = 'translateX(-50%)';
-        deleteBtn.style.backgroundColor = '#ff99cc';
-        deleteBtn.style.border = 'none';
-        deleteBtn.style.padding = '5px 10px';
-        deleteBtn.style.borderRadius = '5px';
-        deleteBtn.style.cursor = 'pointer';
-        deleteBtn.style.fontSize = '12px';
-
-        deleteBtn.onclick = function () {
-          const confirmDelete = confirm('Are you sure you want to delete this media?');
-          if (confirmDelete) {
-            deleteMedia(item.url, mediaWrapper);
-          }
-        };
-
-        mediaWrapper.appendChild(deleteBtn);
         gallery.appendChild(mediaWrapper);
       });
     })
@@ -342,6 +321,34 @@ function openFullScreen(src, type) {
   }
 
   fullScreenOverlay.appendChild(mediaElement);
+  const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = '🗑️ Delete';
+  deleteBtn.style.marginTop = '10px';
+  deleteBtn.style.padding = '8px 12px';
+  deleteBtn.style.fontSize = '16px';
+  deleteBtn.style.cursor = 'pointer';
+  deleteBtn.style.border = 'none';
+  deleteBtn.style.borderRadius = '5px';
+  deleteBtn.style.backgroundColor = '#ff4d6d';
+  deleteBtn.style.color = '#fff';
+
+  deleteBtn.onclick = function (e) {
+    e.stopPropagation(); 
+
+    const confirmDelete = confirm('Are you sure you want to delete this media?');
+    if (confirmDelete) {
+      document.body.removeChild(fullScreenOverlay);
+      const baseUrl = 'https://sample-6kgt.onrender.com';
+      const mediaUrl = src.startsWith(baseUrl) ? src.slice(baseUrl.length) : src;
+
+      deleteMedia(mediaUrl, null);
+
+      // Reload gallery after deletion
+      loadGallery();
+    }
+  };
+
+  fullScreenOverlay.appendChild(deleteBtn);
 
   fullScreenOverlay.addEventListener('click', () => {
     document.body.removeChild(fullScreenOverlay);
