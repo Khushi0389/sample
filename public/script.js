@@ -139,7 +139,7 @@ document.getElementById('uploadForm').addEventListener('submit', function (e) {
   if (fileInput.files.length > 0) {
     formData.append('media', fileInput.files[0]);
 
-    fetch('http://localhost:3000/upload', {
+    fetch('https://sample-6kgt.onrender.com/upload', {
       method: 'POST',
       body: formData
     })
@@ -176,7 +176,7 @@ function loadGallery() {
   const gallery = document.getElementById('gallery');
   gallery.innerHTML = '';
 
-  fetch('http://localhost:3000/gallery')
+  fetch('https://sample-6kgt.onrender.com/gallery')
     .then(res => res.json())
     .then(data => {
       const media = data.media;
@@ -191,7 +191,7 @@ function loadGallery() {
 
         if (item.type === 'video') {
           const video = document.createElement('video');
-          video.src = 'http://localhost:3000' + item.url;
+          video.src = 'https://sample-6kgt.onrender.com' + item.url;
           video.controls = true;
           video.style.width = '100%';
           video.style.height = '100px';
@@ -206,7 +206,7 @@ function loadGallery() {
           mediaWrapper.appendChild(video);
         } else {
           const img = document.createElement('img');
-          img.src = 'http://localhost:3000' + item.url;
+          img.src = 'https://sample-6kgt.onrender.com' + item.url;
           img.style.width = '100%';
           img.style.height = '100px';
           img.style.objectFit = 'cover';
@@ -252,7 +252,7 @@ function loadGallery() {
 
 // 8. Delete Media (image or video)
 function deleteMedia(url, mediaWrapper) {
-  fetch(`http://localhost:3000/delete?mediaUrl=${encodeURIComponent(url)}`, {
+  fetch(`https://sample-6kgt.onrender.com/delete?mediaUrl=${encodeURIComponent(url)}`, {
     method: 'DELETE'
   })
     .then(response => response.json())
