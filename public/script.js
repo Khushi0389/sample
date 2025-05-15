@@ -132,7 +132,7 @@ function goToUpload() {
 // 6. Upload Media Handler (images and videos)
 document.getElementById('uploadForm').addEventListener('submit', function (e) {
   e.preventDefault();
-  const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://sample-6kgt.onrender.com';
+  const baseUrl =  `${window.location.origin}/upload`;
   const formData = new FormData();
   const fileInput = document.getElementById('mediaInput');
 
