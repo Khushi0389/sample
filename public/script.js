@@ -327,7 +327,7 @@ function openFullScreen(src, type) {
   deleteBtn.style.fontSize = '16px';
   deleteBtn.style.cursor = 'pointer';
   deleteBtn.style.border = 'none';
-  deleteBtn.style.borderRadius = '5px';
+  deleteBtn.style.borderRadius = '3px';
   deleteBtn.style.backgroundColor = '#ff4d6d';
   deleteBtn.style.color = '#fff';
 
